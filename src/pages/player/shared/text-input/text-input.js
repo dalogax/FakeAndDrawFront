@@ -5,16 +5,12 @@ import FormControl from '@material-ui/core/FormControl';
 
 import './text-input.css';
 
-function handleChange() {
-   console.log('')
-}
-
 function TextInput(props) {
     return (
         <div className="text-input">
             <FormControl >
                 <InputLabel htmlFor={props.name}>{props.label}</InputLabel>
-                <Input id={props.name} onChange={handleChange} />
+                <Input id={props.name} onChange={props.onChange}/>
             </FormControl>
         </div>
     );
