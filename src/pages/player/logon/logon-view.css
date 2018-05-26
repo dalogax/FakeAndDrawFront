@@ -1,9 +1,11 @@
 .logon-view {
     text-align: center;
+    font-size: 25px;
+    padding: 20px;
 }
 .subtitle {
     margin-bottom: 50px;
 }
-.button {
-    margin-top: 20px;
+.footer {
+    margin-top: 50px;
 }

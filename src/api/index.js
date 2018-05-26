@@ -10,3 +10,7 @@ export function connectToServer(serverEndpoint, onMessageReceived) {
         });
     }, 5000);
 }
+
+export function addUser(body) {
+    debugger;
+}

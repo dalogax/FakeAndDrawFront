@@ -8,7 +8,7 @@ import './text-input.css';
 function TextInput(props) {
     return (
         <div className="text-input">
-            <FormControl >
+            <FormControl disabled={props.disabled}>
                 <InputLabel htmlFor={props.name}>{props.label}</InputLabel>
                 <Input id={props.name} onChange={props.onChange}/>
             </FormControl>
