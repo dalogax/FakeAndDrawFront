@@ -1,4 +1,5 @@
 import appStore from '../store';
+import addManagerActions from './manager-actions';
 
 const appActions = {};
 
@@ -21,5 +22,7 @@ registerAction('setDeviceType', (deviceType, /*state, store*/) => {
         deviceType
     };
 });
+
+addManagerActions(registerAction);
 
 export default appActions;

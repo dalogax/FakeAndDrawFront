@@ -1,3 +1,4 @@
+
 export function connectToServer(serverEndpoint, onMessageReceived) {
     setTimeout(() => {
         onMessageReceived({
