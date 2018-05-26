@@ -4,7 +4,7 @@ const appActions = {};
 
 export function registerAction(name, action) {
     appActions[name] = (state, ...args) => {
-        const params = [state, ...args, appStore];
+        const params = [...args, state, appStore];
         return action.apply(null, params);
     };
 }
@@ -12,11 +12,11 @@ export function registerAction(name, action) {
 export const getAppActions = () => appActions;
 
 // An action received these params
-//  state
 //  none or several params from action invocation
+//  state
 //  store
 
-registerAction('setDeviceType', (state, deviceType/*, store*/) => {
+registerAction('setDeviceType', (deviceType, /*state, store*/) => {
     return {
         deviceType
     };
