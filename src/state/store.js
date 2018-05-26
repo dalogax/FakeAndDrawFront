@@ -4,13 +4,13 @@ import devtools from 'unistore/devtools';
 export const appStore = createStore({
     deviceType: '',
     manager: {
-        currentView: 'home-view',
+        currentView: 'public-home',
         matchCode: null,
         deadline: null,
         matchStatus: ''
     },
     player: {
-        currentView: 'logon-view'
+        currentView: 'logon'
     }
 });
 
