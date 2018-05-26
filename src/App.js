@@ -6,8 +6,19 @@ import { connect } from 'unistore/react';
 
 import { connectToServer } from './api';
 import actions from './state/actions';
-import ManagerHomeView from './pages/manager/home/home-view';
+import ManagerPublicHomeView from './pages/manager/public-home/public-home-view';
+import ManagerGameHomeView from './pages/manager/game-home/game-home-view';
 import PlayerLogonView from './pages/player/logon/logon-view';
+
+const viewsMap = {
+    manager: {
+        'public-home': ManagerPublicHomeView,
+        'game-home': ManagerGameHomeView
+    },
+    player: {
+        'logon': PlayerLogonView
+    }
+};
 
 class App extends Component {
 
@@ -17,6 +28,10 @@ class App extends Component {
         connectToServer('SERVER_WEBSOCKET_URL', message => {
             const action = this.props[message.type];
             
+            // TODO Carlos: CAUTION! We're receiving messages for both
+            // manager and player areas and the user is only using one
+            // of them
+            // We DON'T want to update current view of another area
             if (action) {
                 action(message.body);
             } else {
@@ -26,14 +41,29 @@ class App extends Component {
     }
 
     render() {
-        const { deviceType } = this.props;
+        const View = this.props.CurrentView;
 
-        if (!deviceType) return null;
+        if (!View) return null;
 
-        const View = (deviceType === 'manager') ? ManagerHomeView : PlayerLogonView;
-
-        return <View />;
+        return <View />
     }
 }
 
-export default connect('deviceType', actions)(App);
+function mapStateToProps(state) {
+    // Carlos: We need to handle only views for the deviceType
+    // we're currently on
+    const { deviceType } = state;
+    const currentViewCode = deviceType ? state[deviceType].currentView : null;
+    let CurrentView = null;
+    
+    if (deviceType) {
+        CurrentView = viewsMap[deviceType][currentViewCode];
+    }
+
+    return {
+        deviceType: state.deviceType,
+        CurrentView
+    }
+}
+
+export default connect(mapStateToProps, actions)(App);

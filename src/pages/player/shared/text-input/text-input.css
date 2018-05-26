@@ -2,3 +2,7 @@
     display: block;
     margin-bottom: 20px;
 }
+.MuiFormControl-root-1 {
+    width: 80%;
+    font-size: 25px;
+}
