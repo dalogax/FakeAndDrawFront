@@ -1,22 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { connect } from 'unistore/react';
+
+// import logo from './logo.svg';
+// import './App.css';
+
+import actions from './state/actions';
+import ManagerHomeView from './pages/manager/home/home-view';
+import PlayerLogonView from './pages/player/logon/logon-view';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to Draw & Fake</h1>
-        </header>
-        <p className="App-intro">
-          Get ready to have fun!!!
-        </p>
-		<p>EDGAR MOLA</p>
-      </div>
-    );
-  }
+
+    componentDidMount() {
+        this.props.setDeviceType(window.innerWidth > 400 ? 'manager' : 'player');
+    }
+
+    render() {
+        const { deviceType } = this.props;
+
+        if (!deviceType) return null;
+
+        const View = (deviceType === 'manager') ? ManagerHomeView : PlayerLogonView;
+
+        return <View />;
+    }
 }
 
-export default App;
+export default connect('deviceType', actions)(App);
