@@ -11,7 +11,7 @@ import './logon-view.css';
 function joinGame() {
     const {nickName, code} = this.state;
     if (nickName && code) {
-        this.setState({disabled: true});
+        this.setState({userCreated: true});
         addUser({nickName, code});
     } else {
         alert('Both inputs are required');
@@ -24,7 +24,7 @@ class LogonView extends Component {
         this.state = {
           nickName: '',
           code: '',
-          disabled: false
+          userCreated: false
         };
     }
 
@@ -35,30 +35,40 @@ class LogonView extends Component {
     codeChanged(event) {
         this.setState({code: event.target.value});
     }
+
+    renderFooter() {
+        return this.state.userCreated ? <p>Wait until all your friends join in!!!</p> :
+            <Button
+                variant="raised"
+                color="primary"
+                onClick={joinGame.bind(this)} >
+                Join the game
+            </Button>;
+    }
     
     render() {
         return (
-            <section className="logon-view"> 
-                <p className="subtitle">Just a couple of things before you start...</p> 
-                <TextInput 
-                    name="nickname"
-                    disabled={this.state.disabled}
-                    label="Choose your nickname"
-                    onChange={this.nickNameChanged.bind(this)}/>
-                <TextInput
-                    name="code"
-                    disabled={this.state.disabled}
-                    label="Enter the game code"
-                    onChange={this.codeChanged.bind(this)}/>
-                <div className="footer">
-                    <Button disabled={this.state.disabled}
-                        variant="raised"
-                        color="primary"
-                        onClick={joinGame.bind(this)} >
-                        Join the game
-                    </Button>
-                </div>
-            </section> 
+            <div>
+                <header className="header">
+                    <p>DRAW & FAKE</p>
+                </header>
+                <section className="logon-view"> 
+                    <p className="subtitle">Just a couple of things before you start...</p> 
+                    <TextInput 
+                        name="nickname"
+                        disabled={this.state.userCreated}
+                        label="Choose your nickname"
+                        onChange={this.nickNameChanged.bind(this)}/>
+                    <TextInput
+                        name="code"
+                        disabled={this.state.userCreated}
+                        label="Enter the game code"
+                        onChange={this.codeChanged.bind(this)}/>
+                    <div className="footer">
+                        {this.renderFooter()}
+                    </div>
+                </section>
+            </div>
         );
     }
 }
