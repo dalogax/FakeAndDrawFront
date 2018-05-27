@@ -2,16 +2,46 @@ import React from 'react'
 import { connect } from 'unistore/react';
 
 import actions from '../../../state/actions';
+import { createGame } from '../../../api';
+
+import './public-home-view.css';
+import { Button, CircularProgress } from '@material-ui/core';
 
 class HomeView extends React.Component {
-    render() {
-        const { currentView, matchCode } = this.props;
-        return (
-            <section className="manager-home-page">
-                <h1>Fake & Draw!!! manager</h1>
+    constructor() {
+        super();
+        this.state = {
+            isGameInCreation: false
+        };
+        this.createGameHandler = this.createGameHandler.bind(this);
+    }
 
-                <p>Current View: {currentView}</p>
-                <p>Match Code: {matchCode}</p>
+    createGameHandler() {
+        createGame();
+        this.setState({
+            isGameInCreation: true
+        })
+    }
+
+    render() {
+        return (
+            <section className="manager-home-view">
+                <h1>Welcome to <span className="app-title">Fake & Draw</span></h1>
+
+                <p>You-re just a click away from a very funny game</p>
+                <div>
+                    <Button 
+                        variant="raised" 
+                        color="primary" 
+                        onClick={this.createGameHandler}
+                        disabled={this.state.isGameInCreation}>
+                        Create game
+                    </Button>
+                    {
+                        this.state.isGameInCreation &&
+                        <CircularProgress size={24} className="button-loader" />
+                    }
+                </div>
             </section>
         );
     }

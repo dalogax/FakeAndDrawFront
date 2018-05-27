@@ -1,0 +1,38 @@
+.game-home-view {
+    margin: 4% 20%;
+    text-align: center;
+}
+
+/* .game-home-view .match-code {
+    text-align: center;
+} */
+
+.game-home-view .match-code .code {
+    padding: 20px;
+    border: 1px solid #303f9f;
+    border-radius: 5px;
+    color: #303f9f;
+    font-size: 30px;
+}
+
+.users-list {
+    margin-top: 60px;
+}
+
+/* .user-list-item {
+    display: flex;
+}
+
+.user-list-item .details {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-list-item .content {
+    flex: 1 0 auto;
+}
+*/
+.user-list-item .avatar {
+    width: 71px;
+    height: 71px;
+}

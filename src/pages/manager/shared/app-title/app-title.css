@@ -1,0 +1,16 @@
+.app-title {
+    width: 100%;
+    font-size: 42px;
+    color: #0874caf7;
+    text-align: center;
+}
+
+.app-title h1 {
+    font-size: 42px;
+    color: #0874caf7;
+}
+
+.title {
+    font-size: 55px;
+    font-style: italic;
+}
