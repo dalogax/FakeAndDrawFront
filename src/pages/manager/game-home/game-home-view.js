@@ -6,8 +6,7 @@ import { getJson } from '../../../plugins/ajax';
 import './game-home-view.css';
 
 import AppTitle from '../shared/app-title/app-title';
-import { userInfo } from 'os';
-// import { Card, /*CardContent, CardMedia, Typography*/ } from '@material-ui/core';
+import Countdown from '../shared/countdown/countdown';
 
 class User extends React.Component {
     constructor() {
@@ -33,17 +32,6 @@ class User extends React.Component {
     }
 
     render() {
-        /*
-            <div class="j17 j21 j18 j211 j219">
-                <div class="j220">
-                    <div class="j212 j221">
-                        <h1 class="j68 j73">Live From Space</h1>
-                    </div>
-                </div>
-                <div class="j217 j222" style="background-image:url(&quot;/static/images/cards/live-from-space.jpg&quot;)" title="Live from space album cover">
-                </div>
-            </div>
-        */
         return (
             <div className="user-list-item">
                 <div className="avatar">
@@ -55,7 +43,9 @@ class User extends React.Component {
     }
 }
 
-function GameHomeView({ matchCode, matchUsers }) {
+function GameHomeView({ matchCode, matchUsers, deadline }) {
+    console.log(new Date(deadline));
+    console.log(new Date());
     return (
         <section className="game-home-view">
             <AppTitle />
@@ -71,6 +61,8 @@ function GameHomeView({ matchCode, matchUsers }) {
             <div className="users-list">
                 {matchUsers.map(user => (<User user={user} key={user.nickname} />))}
             </div>
+
+            <Countdown message="Time for the game to begin:" deadline={deadline || (Date.now() + 10000)} />
         </section>
     );
 }
@@ -78,7 +70,8 @@ function GameHomeView({ matchCode, matchUsers }) {
 function mapStatToProps(state) {
     return {
         matchCode: state.manager.matchCode,
-        matchUsers: state.manager.matchUsers
+        matchUsers: state.manager.matchUsers,
+        deadline: state.manager.deadline
     };
 }
 

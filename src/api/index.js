@@ -1,6 +1,3 @@
-import appStore from '../state/store';
-import appActions from '../state/actions';
-
 import SockJS from 'sockjs-client';
 import Stomp from "@stomp/stompjs";
 
@@ -18,6 +15,7 @@ export function connectToServer(onMessageReceived) {
             onMessageReceived(JSON.parse(message.body));
         });
     });
+    // TODO Handle connection loss
 }
 
 export function sendToServer(message) {

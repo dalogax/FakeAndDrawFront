@@ -1,0 +1,13 @@
+.countdown {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+}
+
+.countdown h3, .countdown span {
+    display: inline-block;
+}
+
+.countdown span {
+    margin-left: 15px;
+}
