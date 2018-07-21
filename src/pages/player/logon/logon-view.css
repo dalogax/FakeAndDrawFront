@@ -7,9 +7,13 @@
     font-size: 25px;
     padding: 20px;
 }
+div[role="progressbar"] {
+    margin: auto;
+    margin-bottom: 25px;
+}
 .subtitle {
     margin-bottom: 50px;
 }
 .footer {
     margin-top: 50px;
-}
+}  
