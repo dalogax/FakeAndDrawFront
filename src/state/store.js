@@ -6,6 +6,7 @@ export const appStore = createStore({
     manager: {
         currentView: 'public-home',
         matchCode: null,
+        matchUsers: [],
         deadline: null,
         matchStatus: ''
     },

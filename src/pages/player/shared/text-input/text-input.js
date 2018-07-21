@@ -10,7 +10,7 @@ function TextInput(props) {
         <div className="text-input">
             <FormControl disabled={props.disabled}>
                 <InputLabel htmlFor={props.name}>{props.label}</InputLabel>
-                <Input id={props.name} onChange={props.onChange}/>
+                <Input id={props.name} onChange={props.onChange} autoFocus={props.autoFocus}/>
             </FormControl>
         </div>
     );

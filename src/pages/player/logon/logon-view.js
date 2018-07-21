@@ -3,37 +3,43 @@ import { connect } from 'unistore/react';
 
 import TextInput from '../shared/text-input/text-input';
 import Button from '@material-ui/core/Button';
+import { Dialog, DialogTitle, CircularProgress } from '@material-ui/core';
 import actions from '../../../state/actions';
 import { addUser } from '../../../api/index';
 
 import './logon-view.css';
 
-function joinGame() {
-    const {nickName, code} = this.state;
-    if (nickName && code) {
-        this.setState({userCreated: true});
-        addUser({nickName, code});
-    } else {
-        alert('Both inputs are required');
-    }
-}
-
 class LogonView extends Component {
+    
     constructor() {
         super();
+    
         this.state = {
-          nickName: '',
-          code: '',
+          nickname: '',
+          gameCode: '',
           userCreated: false
         };
+
+        this.onFormSubmit = this.onFormSubmit.bind(this);
     }
 
-    nickNameChanged(event) {
-        this.setState({nickName: event.target.value});
+    nicknameChanged(event) {
+        this.setState({nickname: event.target.value});
     }
     
-    codeChanged(event) {
-        this.setState({code: event.target.value});
+    gameCodeChanged(event) {
+        this.setState({gameCode: event.target.value});
+    }
+
+    onFormSubmit() {
+        const { nickname, gameCode } = this.state;
+
+        if (nickname && gameCode) {
+            this.setState({userCreated: true});
+            addUser({ nickname, gameCode });
+        } else {
+            alert('Both inputs are required');
+        }
     }
 
     renderFooter() {
@@ -41,11 +47,20 @@ class LogonView extends Component {
             <Button
                 variant="raised"
                 color="primary"
-                onClick={joinGame.bind(this)} >
+                onClick={this.onFormSubmit} >
                 Join the game
             </Button>;
     }
     
+    renderWaitingDialog() {
+        return (
+            <Dialog>
+                <DialogTitle>Waiting until all your friends join the party!</DialogTitle>
+                <CircularProgress size="50" />
+            </Dialog>
+        );
+    }
+
     render() {
         return (
             <div>
@@ -58,12 +73,13 @@ class LogonView extends Component {
                         name="nickname"
                         disabled={this.state.userCreated}
                         label="Choose your nickname"
-                        onChange={this.nickNameChanged.bind(this)}/>
+                        autoFocus={true}
+                        onChange={this.nicknameChanged.bind(this)}/>
                     <TextInput
-                        name="code"
+                        name="game-code"
                         disabled={this.state.userCreated}
                         label="Enter the game code"
-                        onChange={this.codeChanged.bind(this)}/>
+                        onChange={this.gameCodeChanged.bind(this)}/>
                     <div className="footer">
                         {this.renderFooter()}
                     </div>
