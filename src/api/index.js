@@ -4,8 +4,8 @@ import appActions from '../state/actions';
 import SockJS from 'sockjs-client';
 import Stomp from "@stomp/stompjs";
 
-const serverUrl = "http://vulcano:8080/fakeanddraw";
-// const serverUrl = 'https://fakeanddraw.herokuapp.com/fakeanddraw';
+// const serverUrl = "http://vulcano:8080/fakeanddraw";
+const serverUrl = 'https://fakeanddraw.herokuapp.com/fakeanddraw';
 const serverRequestUrl = "/request";
 let stompClient = null;
 
