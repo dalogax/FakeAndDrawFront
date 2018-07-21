@@ -8,6 +8,15 @@
     display: inline-block;
 }
 
-.countdown span {
-    margin-left: 15px;
+.countdown h3 {
+    padding-left: 15px;
+    padding-bottom: 10px;
 }
+
+.countdown span {
+    position: relative;
+    top: 5px;
+    margin-left: 15px;
+    padding-right: 15px;
+}
+

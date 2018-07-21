@@ -63,7 +63,7 @@ class LogonView extends Component {
 
     render() {
         return (
-            <div className="logon-view">
+            <div>
                 <header className="header">
                     <p>DRAW & FAKE</p>
                 </header>

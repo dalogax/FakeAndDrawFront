@@ -21,12 +21,7 @@ class Countdown extends React.Component {
 
     componentDidMount() {
         this.interval = setInterval(() => {
-            console.log('Deadline:', this.props.deadline);
-            console.log('Current timestamp:', Date.now());
-            
             const ttl = calculateTtl(this.props.deadline);
-
-            console.log('ttl:', ttl);
 
             this.setState({ ttl });
             if (ttl <= 0) {

@@ -24,6 +24,8 @@ class HomeView extends React.Component {
     }
 
     render() {
+        // TODO Create game button must be disabled until we're connected to the server
+        // or connect to the server right before sending create game message
         return (
             <section className="manager-home-view">
                 <h1>Welcome to <span className="app-title">Fake & Draw</span></h1>
