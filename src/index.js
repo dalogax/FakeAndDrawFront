@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'unistore/react';
-
-import './index.css';
-
 import appStore from './state/store';
 import appActions from './state/actions';
 import { connectToServer } from './api';

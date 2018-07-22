@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'unistore/react';
 
-// import { connectToServer } from './api';
 import actions from './state/actions';
 import ManagerPublicHomeView from './pages/manager/public-home/public-home-view';
 import ManagerGameHomeView from './pages/manager/game-home/game-home-view';
 import PlayerLogonView from './pages/player/logon/logon-view';
+
+import './App.css';
 
 const viewsMap = {
     manager: {
