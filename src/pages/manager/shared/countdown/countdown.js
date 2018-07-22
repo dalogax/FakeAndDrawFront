@@ -16,7 +16,7 @@ class Countdown extends React.Component {
             ttl: calculateTtl(props.deadline)
         };
 
-        this.interval;
+        this.interval = undefined;
     }
 
     componentDidMount() {
