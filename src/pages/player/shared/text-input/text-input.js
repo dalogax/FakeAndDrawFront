@@ -1,4 +1,5 @@
 import React from 'react';
+import { bool, string, func } from 'prop-types';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import FormControl from '@material-ui/core/FormControl';
@@ -15,5 +16,13 @@ function TextInput(props) {
         </div>
     );
 }
+
+TextInput.propTypes = {
+    disabled: bool,
+    name: string.isRequired,
+    label: string.isRequired,
+    onChange: func.isRequired,
+    autoFocus: bool
+};
 
 export default TextInput;

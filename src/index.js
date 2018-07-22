@@ -18,13 +18,17 @@ function Main() {
 ReactDOM.render(<Main />, document.getElementById('root'));
 registerServiceWorker();
 
-connectToServer(message => {
-    const action = appActions[message.type];
-    
-    if (action) {
-        appStore.action(action)(message.payload);
-    } else {
-        console.warn('No action found for incoming message:', message.type);
-    }  
-});
-
+connectToServer({
+    onConnection: () => {
+        appStore.action(appActions.connectedToServer)();
+    },
+    onMessageReceived: message => {
+        const action = appActions[message.type];
+        
+        if (action) {
+            appStore.action(action)(message.payload);
+        } else {
+            console.warn('No action found for incoming message:', message.type);
+        }  
+    }
+})

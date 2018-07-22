@@ -1,4 +1,5 @@
 import React from 'react'
+import { bool } from 'prop-types';
 import { connect } from 'unistore/react';
 
 import actions from '../../../state/actions';
@@ -36,7 +37,7 @@ class HomeView extends React.Component {
                         variant="raised" 
                         color="primary" 
                         onClick={this.createGameHandler}
-                        disabled={this.state.isGameInCreation}>
+                        disabled={!this.props.isServerConnected || this.state.isGameInCreation}>
                         Create game
                     </Button>
                     {
@@ -49,10 +50,13 @@ class HomeView extends React.Component {
     }
 }
 
+HomeView.propTypes = {
+    isServerConnected: bool
+};
+
 function mapStateToProps(state) {
     return {
-        currentView: state.manager.currentView,
-        matchCode: state.manager.matchCode
+        isServerConnected: state.isServerConnected
     };
 }
 

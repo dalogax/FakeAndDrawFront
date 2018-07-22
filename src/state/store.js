@@ -1,8 +1,10 @@
+/* global process */
 import createStore from 'unistore';
 import devtools from 'unistore/devtools';
 
 export const appStore = createStore({
     deviceType: '',
+    isServerConnected: false,
     manager: {
         currentView: 'public-home',
         matchCode: null,

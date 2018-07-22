@@ -13,15 +13,17 @@ export function registerAction(name, action) {
 export const getAppActions = () => appActions;
 
 // An action received these params
-//  none or several params from action invocation
-//  state
-//  store
+//  * none or several params from action invocation
+//  * state
+//  * store
 
 registerAction('setDeviceType', (deviceType, /*state, store*/) => {
     return {
         deviceType
     };
 });
+
+registerAction('connectedToServer', () => ({ isServerConnected: true }));
 
 addManagerActions(registerAction);
 

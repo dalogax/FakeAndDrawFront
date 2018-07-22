@@ -4,8 +4,9 @@
   "private": true,
   "dependencies": {
     "@material-ui/core": "^1.0.0",
-    "lscache": "^1.1.0",
     "@stomp/stompjs": "^4.0.6",
+    "lscache": "^1.1.0",
+    "prop-types": "^15.6.2",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-scripts": "1.1.4",
@@ -18,7 +19,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build && shx cp ./build/index.html ./build/200.html",
+    "lint": "eslint src",
+    "predeploy": "npm run lint && npm run build && shx cp ./build/index.html ./build/200.html",
     "deploy": "surge --domain https://fad.surge.sh -p ./build"
   },
   "git": {

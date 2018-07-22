@@ -1,4 +1,5 @@
 import React from 'react';
+import { string, number, func } from 'prop-types';
 import { Paper, Typography } from '@material-ui/core';
 
 import './countdown.css';
@@ -52,6 +53,12 @@ class Countdown extends React.Component {
     }
 
 }
+
+Countdown.propTypes = {
+    message: string.isRequired,
+    deadline: number.isRequired,
+    onCountdownFinished: func
+};
 
 Countdown.defaultProps = {
     onCountdownFinished: () => false

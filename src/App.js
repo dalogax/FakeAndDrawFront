@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { func } from 'prop-types';
 import { connect } from 'unistore/react';
 
 import actions from './state/actions';
@@ -32,6 +33,11 @@ class App extends Component {
         return <View />
     }
 }
+
+App.propTypes = {
+    CurrentView: func, // Component constructor
+    setDeviceType: func.isRequired
+};
 
 function mapStateToProps(state) {
     // Carlos: We need to handle only views for the deviceType

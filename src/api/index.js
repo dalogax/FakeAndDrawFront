@@ -6,11 +6,13 @@ const serverUrl = 'https://fakeanddraw.herokuapp.com/fakeanddraw';
 const serverRequestUrl = "/request";
 let stompClient = null;
 
-export function connectToServer(onMessageReceived) {
+export function connectToServer({ onConnection, onMessageReceived }) {
     const socket = new SockJS(serverUrl);
     stompClient = Stomp.over(socket);
-    stompClient.connect({}, function (frame) {
-        const sessionId = /\/([^\/]+)\/websocket/.exec(socket._transport.url)[1];
+    stompClient.connect({}, function () {
+        onConnection.call();
+
+        const sessionId = /\/([^/]+)\/websocket/.exec(socket._transport.url)[1];
         stompClient.subscribe(`/user/${sessionId}/response`, (message) => {
             onMessageReceived(JSON.parse(message.body));
         });

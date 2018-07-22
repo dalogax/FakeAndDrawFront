@@ -1,4 +1,5 @@
 import React from 'react';
+import { shape, string, array, number } from 'prop-types';
 import { connect } from 'unistore/react';
 
 import { getJson } from '../../../plugins/ajax';
@@ -16,7 +17,7 @@ class User extends React.Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
         getJson('https://tinyfac.es/api/users')
             .then(data => {
                 console.log(data);
@@ -43,16 +44,20 @@ class User extends React.Component {
     }
 }
 
+User.propTypes = {
+    user: shape({
+        nickname: string
+    })
+};
+
 function GameHomeView({ matchCode, matchUsers, deadline }) {
-    console.log(new Date(deadline));
-    console.log(new Date());
     return (
         <section className="game-home-view">
             <AppTitle />
 
             <p className="subtitle">
-                Join the game created by browsing to "www.fake-and-draw.com"
-                and use this private code:
+                Join the game created by browsing to <strong>fad.surge.com</strong>
+                &nbsp;and use this private code:
             </p>
             <h2 className="match-code">
                 <span className="code">{matchCode}</span>
@@ -66,6 +71,12 @@ function GameHomeView({ matchCode, matchUsers, deadline }) {
         </section>
     );
 }
+
+GameHomeView.propTypes = { 
+    matchCode: string.isRequired, 
+    matchUsers: array, 
+    deadline: number 
+};
 
 function mapStatToProps(state) {
     return {

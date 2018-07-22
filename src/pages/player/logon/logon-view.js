@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { connect } from 'unistore/react';
 
 import TextInput from '../shared/text-input/text-input';
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogTitle, CircularProgress } from '@material-ui/core';
-import actions from '../../../state/actions';
 import { addUser } from '../../../api/index';
 
 import './logon-view.css';
@@ -15,9 +13,9 @@ class LogonView extends Component {
         super();
     
         this.state = {
-          nickname: '',
-          gameCode: '',
-          isUserCreated: false
+            nickname: '',
+            gameCode: '',
+            isUserCreated: false
         };
 
         this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -92,10 +90,4 @@ class LogonView extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        currentView: state.manager.currentView
-    };
-}
-
-export default connect(mapStateToProps, actions)(LogonView);
+export default LogonView;
