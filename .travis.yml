@@ -1,3 +1,4 @@
+install: npm install
 script: npm run predeploy
 deploy:
     provider: surge
