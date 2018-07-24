@@ -17,16 +17,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "__test": "react-scripts test --env=jsdom",
+    "test": "echo \"No tests implemented yet.\"",
     "eject": "react-scripts eject",
     "lint": "eslint src",
     "predeploy": "npm run lint && npm run build && shx cp ./build/index.html ./build/200.html",
     "deploy": "surge --domain https://fad.surge.sh -p ./build"
-  },
-  "git": {
-    "scripts": {
-      "pre-push": "npm run deploy"
-    }
   },
   "devDependencies": {
     "eslint": "^5.2.0",

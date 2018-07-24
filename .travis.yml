@@ -1,0 +1,7 @@
+script: npm run predeploy
+deploy:
+    provider: surge
+    project: ./build/
+    domain: fad.surge.sh
+    skip_cleanup: true
+    on: release
