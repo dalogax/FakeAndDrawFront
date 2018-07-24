@@ -31,7 +31,7 @@ class HomeView extends React.Component {
             <section className="manager-home-view">
                 <h1>Welcome to <span className="app-title">Fake & Draw</span></h1>
 
-                <p>You-re just a click away from a very funny game</p>
+                <p>You-re just a click away from a very funny game__</p>
                 <div>
                     <Button 
                         variant="raised" 
