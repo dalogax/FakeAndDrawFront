@@ -1,18 +1,19 @@
 /* global process */
 import createStore from 'unistore';
 import devtools from 'unistore/devtools';
+import { DEVICE_TYPE_MANAGER, DEVICE_TYPE_PLAYER } from '../plugins/utils';
 
 export const appStore = createStore({
     deviceType: '',
     isServerConnected: false,
-    manager: {
+    [DEVICE_TYPE_MANAGER]: {
         currentView: 'public-home',
         matchCode: null,
         matchUsers: [],
         deadline: null,
         matchStatus: ''
     },
-    player: {
+    [DEVICE_TYPE_PLAYER]: {
         currentView: 'logon'
     }
 });

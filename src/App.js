@@ -8,6 +8,7 @@ import ManagerGameHomeView from './pages/manager/game-home/game-home-view';
 import PlayerLogonView from './pages/player/logon/logon-view';
 
 import './App.css';
+import { getDeviceType } from './plugins/utils';
 
 const viewsMap = {
     manager: {
@@ -22,7 +23,7 @@ const viewsMap = {
 class App extends Component {
 
     componentDidMount() {
-        this.props.setDeviceType(window.innerWidth > 400 ? 'manager' : 'player');
+        this.props.setDeviceType(getDeviceType());
     }
 
     render() {
