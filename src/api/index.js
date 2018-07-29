@@ -1,23 +1,50 @@
 import SockJS from 'sockjs-client';
 import Stomp from "@stomp/stompjs";
+import { getUserSessionId } from '../plugins/utils';
 
-// const serverUrl = "http://vulcano:8080/fakeanddraw";
-const serverUrl = 'https://fakeanddraw.herokuapp.com/fakeanddraw';
+// const SERVER_URL = "http://vulcano:8080/fakeanddraw";
+// const SERVER_URL = 'http://192.168.0.5:8080/fakeanddraw';
+const SERVER_URL = 'https://fakeanddraw.herokuapp.com/fakeanddraw';
 const serverRequestUrl = "/request";
 let stompClient = null;
 
-export function connectToServer({ onConnection, onMessageReceived }) {
-    const socket = new SockJS(serverUrl);
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, function () {
-        onConnection.call();
+function onConnectedToServer({ client, userSessionId, onConnection, onMessageReceived }) {
+    onConnection.call();
 
-        const sessionId = /\/([^/]+)\/websocket/.exec(socket._transport.url)[1];
-        stompClient.subscribe(`/user/${sessionId}/response`, (message) => {
-            onMessageReceived(JSON.parse(message.body));
-        });
+    client.subscribe(`/user/${userSessionId}/response`, (message) => {
+        onMessageReceived(JSON.parse(message.body));
     });
-    // TODO Handle connection loss
+}
+
+function onConnectionError(error) {
+    console.error('Error connecting to server:', error);
+}
+
+export function connectToServer({ onConnection, onMessageReceived }) {
+    const userSessionId = getUserSessionId();
+
+    const socketConnectionOptions = {
+        sessionId: () => userSessionId
+    };
+
+    // Stomp needs the 'over' call to be provided a factory function to properly
+    // integrate with StockJS
+    // https://github.com/stomp-js/stomp-websocket/issues/15
+    // https://stomp-js.github.io/stomp-websocket/codo/extra/docs-src/sockjs.md.html
+    stompClient = Stomp.over(() => new SockJS(SERVER_URL, null, socketConnectionOptions));
+    stompClient.reconnect_delay = 5000; // eslint-disable-line camelcase
+
+    stompClient.connect(
+        // https://stomp-js.github.io/stomp-websocket/codo/extra/docs-src/Usage.md.html#toc_5
+        {}, // headers 
+        onConnectedToServer.bind(null, {
+            client: stompClient, 
+            userSessionId, 
+            onConnection, 
+            onMessageReceived
+        }),
+        onConnectionError
+    );
 }
 
 export function sendToServer(message) {

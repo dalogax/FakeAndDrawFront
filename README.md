@@ -44,3 +44,6 @@ Application code lives in the **/src** folder:
 ## Main files
 * **/src/App.js**: Main application view (acts kind of a router)
 * **/src/index.js**: Main entry point of the application (renders application and connects to back-end)
+
+## Debug
+If you want to run the client locally and make the app to connect to your own back-end server, you will need to update the **SERVER_URL** constant in the file **/src/api/index.js**.

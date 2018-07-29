@@ -36,7 +36,7 @@ class User extends React.Component {
         return (
             <div className="user-list-item">
                 <div className="avatar">
-                    <img src={this.state.avatarUrl} width="71" height="71" alt="Paquitosoft" />
+                    <img src={this.state.avatarUrl} height="71" alt="Paquitosoft" />
                 </div>
                 <div className="username">{this.props.user.nickname}</div>
             </div>
@@ -56,7 +56,7 @@ function GameHomeView({ matchCode, matchUsers, deadline }) {
             <AppTitle />
 
             <p className="subtitle">
-                Join the game created by browsing to <strong>fad.surge.com</strong>
+                Join the game created by browsing to <strong>fad.surge.sh</strong>
                 &nbsp;and use this private code:
             </p>
             <h2 className="match-code">

@@ -10,6 +10,7 @@
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-scripts": "1.1.4",
+    "shortid": "^2.2.12",
     "sockjs": "^0.3.19",
     "stompjs": "^2.3.3",
     "unistore": "^3.0.6"
@@ -28,6 +29,7 @@
     "eslint": "^5.2.0",
     "eslint-plugin-react": "^7.10.0",
     "git-scripts": "^0.2.1",
+    "js-cookie": "^2.2.0",
     "shx": "^0.3.2",
     "surge": "^0.20.1"
   }
