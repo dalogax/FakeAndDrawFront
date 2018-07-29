@@ -2,9 +2,9 @@ import SockJS from 'sockjs-client';
 import Stomp from "@stomp/stompjs";
 import { getUserSessionId } from '../plugins/utils';
 
-// const serverUrl = "http://vulcano:8080/fakeanddraw";
-// const serverUrl = 'http://192.168.0.5:8080/fakeanddraw';
-const serverUrl = 'https://fakeanddraw.herokuapp.com/fakeanddraw';
+// const SERVER_URL = "http://vulcano:8080/fakeanddraw";
+// const SERVER_URL = 'http://192.168.0.5:8080/fakeanddraw';
+const SERVER_URL = 'https://fakeanddraw.herokuapp.com/fakeanddraw';
 const serverRequestUrl = "/request";
 let stompClient = null;
 
@@ -31,7 +31,7 @@ export function connectToServer({ onConnection, onMessageReceived }) {
     // integrate with StockJS
     // https://github.com/stomp-js/stomp-websocket/issues/15
     // https://stomp-js.github.io/stomp-websocket/codo/extra/docs-src/sockjs.md.html
-    stompClient = Stomp.over(() => new SockJS(serverUrl, null, socketConnectionOptions));
+    stompClient = Stomp.over(() => new SockJS(SERVER_URL, null, socketConnectionOptions));
     stompClient.reconnect_delay = 5000; // eslint-disable-line camelcase
 
     stompClient.connect(
