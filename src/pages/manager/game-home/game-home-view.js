@@ -36,7 +36,7 @@ class User extends React.Component {
         return (
             <div className="user-list-item">
                 <div className="avatar">
-                    <img src={this.state.avatarUrl} width="71" height="71" alt="Paquitosoft" />
+                    <img src={this.state.avatarUrl} height="71" alt="Paquitosoft" />
                 </div>
                 <div className="username">{this.props.user.nickname}</div>
             </div>
