@@ -56,7 +56,7 @@ function GameHomeView({ matchCode, matchUsers, deadline }) {
             <AppTitle />
 
             <p className="subtitle">
-                Join the game created by browsing to <strong>fad.surge.com</strong>
+                Join the game created by browsing to <strong>fad.surge.sh</strong>
                 &nbsp;and use this private code:
             </p>
             <h2 className="match-code">
