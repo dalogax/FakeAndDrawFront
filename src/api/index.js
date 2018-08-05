@@ -78,3 +78,13 @@ export function addUser({ nickname, gameCode }) {
         payload: { nickname, gameCode }
     });
 }
+
+export function submitDrawing({ drawingData }) {
+    // Drawing data is a string
+    sendToServer({
+        type: "drawing-submit",
+        payload: {
+            image: drawingData
+        }
+    });
+}

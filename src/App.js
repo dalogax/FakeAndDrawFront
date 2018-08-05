@@ -3,20 +3,24 @@ import { func } from 'prop-types';
 import { connect } from 'unistore/react';
 
 import actions from './state/actions';
+import { getDeviceType } from './plugins/utils';
 import ManagerPublicHomeView from './pages/manager/public-home/public-home-view';
 import ManagerGameHomeView from './pages/manager/game-home/game-home-view';
 import PlayerLogonView from './pages/player/logon/logon-view';
+import MatchView from './pages/manager/match/match-view';
+import DrawView from './pages/player/draw/draw-view';
 
 import './App.css';
-import { getDeviceType } from './plugins/utils';
 
 const viewsMap = {
     manager: {
         'public-home': ManagerPublicHomeView,
-        'game-home': ManagerGameHomeView
+        'game-home': ManagerGameHomeView,
+        'match': MatchView
     },
     player: {
-        'logon': PlayerLogonView
+        'logon': PlayerLogonView,
+        'draw': DrawView
     }
 };
 

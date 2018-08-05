@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 
 import TextInput from '../shared/text-input/text-input';
 import Button from '@material-ui/core/Button';
-import { Dialog, DialogTitle, CircularProgress } from '@material-ui/core';
 import { addUser } from '../../../api/index';
 
 import './logon-view.css';
+import PlayerDialog from '../shared/player-dialog/player-dialog';
 
 class LogonView extends Component {
     
@@ -52,10 +52,10 @@ class LogonView extends Component {
     
     renderWaitingDialog(showOpened) {
         return (
-            <Dialog className="waiting-alert" open={showOpened}>
-                <DialogTitle>Waiting until all your friends join the party!</DialogTitle>
-                <CircularProgress className="loader-indicator" />
-            </Dialog>
+            <PlayerDialog 
+                message="Waiting until all your friends join the party!" 
+                showOpened={showOpened} 
+            />
         );
     }
 

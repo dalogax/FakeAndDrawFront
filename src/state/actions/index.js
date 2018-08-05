@@ -1,5 +1,6 @@
 import appStore from '../store';
 import addManagerActions from './manager-actions';
+import addPlayerActions from './player-actions';
 
 const appActions = {};
 
@@ -26,5 +27,6 @@ registerAction('setDeviceType', (deviceType, /*state, store*/) => {
 registerAction('connectedToServer', () => ({ isServerConnected: true }));
 
 addManagerActions(registerAction);
+addPlayerActions(registerAction);
 
 export default appActions;
