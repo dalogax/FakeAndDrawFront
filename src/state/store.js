@@ -14,7 +14,9 @@ export const appStore = createStore({
         matchStatus: ''
     },
     [DEVICE_TYPE_PLAYER]: {
-        currentView: 'logon'
+        currentView: 'logon',
+        drawTitle: '',
+        deadline: null
     }
 });
 

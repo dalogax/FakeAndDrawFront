@@ -1,0 +1,22 @@
+.draw-view header {
+    height: 45px;
+    border-bottom: 1px solid;
+    text-align: center;
+    font-size: 30px;
+}
+
+.draw-view section {
+    
+}
+
+.draw-view footer {
+    height: 45px;
+    /* position: fixed;
+    bottom: 0%; */
+    /* text-align: center; */
+}
+
+.draw-view .wrapper {
+    width: 100%;
+    text-align: center;
+}

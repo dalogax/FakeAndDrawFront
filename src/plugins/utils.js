@@ -1,22 +1,24 @@
 import shortid from 'shortid';
-import Cookies from 'js-cookie';
+import { get/*, set*/ } from 'lscache';
 
-const USER_SESSION_COOKIE_NAME = 'usi';
 export const DEVICE_TYPE_MANAGER = 'manager';
 export const DEVICE_TYPE_PLAYER = 'player';
 
-let userSessionId = Cookies.get(USER_SESSION_COOKIE_NAME);
+export function getDeviceType() {
+    return (window.innerWidth / window.devicePixelRatio) > 400 ? DEVICE_TYPE_MANAGER : DEVICE_TYPE_PLAYER;
+}
+
+const USER_SESSION_KEY = `${getDeviceType}-usi`;
+
+let userSessionId = get(USER_SESSION_KEY);
 
 export function getUserSessionId() {
     if (!userSessionId) {
         userSessionId = `${getDeviceType() === DEVICE_TYPE_MANAGER ? 'm' : 'p'}_${shortid.generate()}`;
-        // ttl is expressed in days
-        Cookies.set(USER_SESSION_COOKIE_NAME, userSessionId, { ttl: 30 });
+        // ttl is expressed in minutes
+        //set(USER_SESSION_KEY, userSessionId, { ttl: 60 * 24 * 30 });
     }
 
     return userSessionId;
 }
 
-export function getDeviceType() {
-    return window.innerWidth > 400 ? DEVICE_TYPE_MANAGER : DEVICE_TYPE_PLAYER;
-}

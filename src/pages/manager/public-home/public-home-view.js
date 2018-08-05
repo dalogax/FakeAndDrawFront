@@ -4,9 +4,10 @@ import { connect } from 'unistore/react';
 
 import actions from '../../../state/actions';
 import { createGame } from '../../../api';
+import { Button, CircularProgress } from '@material-ui/core';
+import AppTitle from '../shared/app-title/app-title';
 
 import './public-home-view.css';
-import { Button, CircularProgress } from '@material-ui/core';
 
 class HomeView extends React.Component {
     constructor() {
@@ -29,7 +30,9 @@ class HomeView extends React.Component {
         // or connect to the server right before sending create game message
         return (
             <section className="manager-home-view">
-                <h1>Welcome to <span className="app-title">Fake & Draw</span></h1>
+                <AppTitle>
+                    <h1>Welcome to <span className="title">Fake & Draw</span></h1>
+                </AppTitle>
 
                 <p>You-re just a click away from a very funny game</p>
                 <div>
