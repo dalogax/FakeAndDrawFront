@@ -9,7 +9,7 @@ function MatchView({ users }) {
     return (
         <section className="match-view">
             <p className="subtitle">
-                We're waiting for all the players to submit their drawing.<br/>
+                We are waiting for all the players to submit their drawing.<br/>
                 We will start playing right after we have all of them...
             </p>
 
