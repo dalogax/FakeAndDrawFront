@@ -1,6 +1,7 @@
 import React from 'react';
-import { shape, string, array, number } from 'prop-types';
+import { shape, string, array, number, func } from 'prop-types';
 import { connect } from 'unistore/react';
+import actions from '../../../state/actions';
 
 import { getJson } from '../../../plugins/ajax';
 
@@ -50,7 +51,7 @@ User.propTypes = {
     })
 };
 
-function GameHomeView({ matchCode, matchUsers, deadline }) {
+function GameHomeView({ matchCode, matchUsers, deadline, updateView }) {
     return (
         <section className="game-home-view">
             <AppTitle />
@@ -67,7 +68,14 @@ function GameHomeView({ matchCode, matchUsers, deadline }) {
                 {matchUsers.map(user => (<User user={user} key={user.nickname} />))}
             </div>
 
-            <Countdown message="Time for the game to begin:" deadline={deadline || (Date.now() + 10000)} />
+            <Countdown 
+                message="Time for the game to begin:" 
+                deadline={deadline || (Date.now() + 10000)} 
+                onCountdownFinished={() => {
+                    updateView('match');
+                }}
+            />
+
         </section>
     );
 }
@@ -75,7 +83,8 @@ function GameHomeView({ matchCode, matchUsers, deadline }) {
 GameHomeView.propTypes = { 
     matchCode: string.isRequired, 
     matchUsers: array, 
-    deadline: number 
+    deadline: number,
+    updateView: func.isRequired
 };
 
 function mapStatToProps(state) {
@@ -86,4 +95,7 @@ function mapStatToProps(state) {
     };
 }
 
-export default connect(mapStatToProps)(GameHomeView);
+export default connect(
+    mapStatToProps, 
+    { updateView: actions.updateManagerView }
+)(GameHomeView);
