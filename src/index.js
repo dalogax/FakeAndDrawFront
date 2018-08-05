@@ -26,7 +26,9 @@ connectToServer({
         const action = appActions[message.type];
         
         if (action) {
-            appStore.action(action)(message.payload);
+            // message is a FSA action like json object 
+            // (https://github.com/redux-utilities/flux-standard-action)
+            appStore.action(action)(message);
         } else {
             console.warn('No action found for incoming message:', message.type);
         }  
